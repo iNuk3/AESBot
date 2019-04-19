@@ -17,6 +17,14 @@ app.get('/', function(request, response) {
 var http = require("http");
 setInterval(function() {
     http.get("http://aesbot.herokuapp.com/");
+    fortniteAPI.login().then(() => {
+        try {
+            registerKeys(true);
+          }
+          catch(error) {
+            console.log(error);
+          }
+    });
 }, 300000);
 
 //FORTNITE LOGIN
@@ -124,7 +132,7 @@ function processCommand(receivedMessage) {
         }
         else
         {
-            receivedMessage.channel.send(receivedMessage.author + " You don't have enough permissions to use this command.");
+            receivedMessage.channel.send(receivedMessage.author + " You don't have enough permissions to use this command.").then(msg => { msg.delete(5000) }).catch();
         }
     }
     else if (primaryCommand == "clear")
@@ -150,7 +158,7 @@ function processCommand(receivedMessage) {
         }
         else
         {
-            receivedMessage.channel.send(receivedMessage.author + " You don't have enough permissions to use this command.");
+            receivedMessage.channel.send(receivedMessage.author + " You don't have enough permissions to use this command.").then(msg => { msg.delete(5000) }).catch();
         }
     }
     else if (primaryCommand == "help")
@@ -158,23 +166,23 @@ function processCommand(receivedMessage) {
         help(receivedMessage);
     }
     else {
-        receivedMessage.channel.send("I don't understand the command. Try `" + process.env.botPREFIX + "aes`, `" + process.env.botPREFIX + "faes` or `" + process.env.botPREFIX + "ann channelid message`")
+        receivedMessage.channel.send("I don't understand the command. Try `" + process.env.botPREFIX + "help` to get a list of commands.")
     }
 }
 //BOT HELP
 function help(receivedMessage)
 {
     const embed = new Discord.RichEmbed()
-  .setAuthor(client.user.username + "'s Help", client.user.avatarURL)
-  .setColor([119, 57, 59])
-  //.setThumbnail(client.user.avatarURL)
-  //.setTimestamp()
-  .addField("Main Commands",
-  "- `" + process.env.botPREFIX + "aes` Sends the latest Fortnite Static AES Key\n")
-  .addField("Mods Command","- `" + 
-  process.env.botPREFIX + "faes` Force to update the latest Fortnite Dynamic AES Keys in <#" + process.env.aesCHANNELID + ">\n- `" + 
-  process.env.botPREFIX + "ann channelid message` Sends messages using the bot as the announcer\n- `" + 
-  process.env.botPREFIX + "clear amount` It does what it says, default amount is set to 100\n", true)
+    .setTitle(client.user.username + "'s Help")
+    .setURL("https://github.com/iAmAsval/AESBot")
+    .setColor([119, 57, 59])
+    .setThumbnail(client.user.avatarURL)
+    .addField("Main Commands", 
+    "- `" + process.env.botPREFIX + "aes` Sends the latest Fortnite Static AES Key\n")
+    .addField("Mods Command","- `" + 
+    process.env.botPREFIX + "faes` Force to update the latest Fortnite Dynamic AES Keys in <#" + process.env.aesCHANNELID + ">\n- `" + 
+    process.env.botPREFIX + "ann channelid message` Sends messages using the bot as the announcer\n- `" + 
+    process.env.botPREFIX + "clear amount` It does what it says, default amount is set to 100\n", true)
 
   receivedMessage.channel.send({embed});
 }
