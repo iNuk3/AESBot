@@ -17,6 +17,14 @@ app.get('/', function(request, response) {
 var http = require("http");
 setInterval(function() {
     http.get("http://aesbot.herokuapp.com/");
+    fortniteAPI.login().then(() => {
+        try {
+            registerKeys(true);
+          }
+          catch(error) {
+            console.log(error);
+          }
+    });
 }, 300000);
 
 //FORTNITE LOGIN
@@ -232,18 +240,18 @@ function registerKeys(compare)
             var data = fs.readFileSync('AESKeys.txt', 'utf-8');
             var newValue = data.replace(data, '');
             fs.writeFileSync('AESKeys.txt', newValue, 'utf-8');
-            console.log("AESKeys.txt cleared");
+            //console.log("AESKeys.txt cleared");
         }
         else
         {
             fs.writeFileSync('AESKeys.txt', '', 'utf-8');
-            console.log("AESKeys.txt created");
+            //console.log("AESKeys.txt created");
         }
 
         lineReader.on('line', function (line) {
             convert(line, false);
         });
-        console.log("Keys added to file");
+        //console.log("Keys added to file");
 
         if (compare == true)
         {
