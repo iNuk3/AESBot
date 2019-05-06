@@ -8,6 +8,8 @@
 ## GETTING STARTED
 ### Important
 This bot is fully made for Heroku and isn't personalized at all. Read the code carefully to change/add some stuffs depending on your requirements (i.e. Role needed to use `faes`)
+
+If you know nothing about Fortnite AES Keys, please don't use it, i won't give any support to explain what you don't know.
 ### Prerequisites
 [Install Node.js](https://nodejs.org/en/)
 ### How does it works
