@@ -189,9 +189,8 @@ function help(receivedMessage)
 
 //FORTNITE LATEST PAKS GUID
 var dict = {
-    "1017071033-2960430250-3060898349-2228574301": "pakchunk1000-WindowsClient.pak",
-    "1435256579-1146701242-28877991-4121881694": "pakchunk1001-WindowsClient.pak",
-    "3959318408-3546797889-2936688592-2563636537": "pakchunk1002-WindowsClient.pak",
+    "1435256579-1146701242-28877991-4121881694": "pakchunk1000-WindowsClient.pak",
+    "3959318408-3546797889-2936688592-2563636537": "pakchunk1001-WindowsClient.pak",
 };
 function splitGUID(input, len) {
     return input.match(new RegExp('.{1,' + len + '}(?=(.{' + len + '})+(?!.))|.{1,' + len + '}$', 'g'))
