@@ -144,6 +144,14 @@ function processCommand(receivedMessage) {
                 }, function(err){console.log(err)})
         }
     }
+    else if (primaryCommand == "edit")
+    {
+        if (receivedMessage.member.hasPermission("MANAGE_MESSAGES") && receivedMessage.author == "<@262736504244142080>") {
+            receivedMessage.delete();
+            receivedMessage.channel.fetchMessage(firstArguments)
+               .then(message => message.edit(otherArguments), function(err){console.log(err)})
+        }
+    }
     else if (primaryCommand == "ann")
     {
         receivedMessage.delete();
