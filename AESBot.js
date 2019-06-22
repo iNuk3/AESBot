@@ -113,7 +113,7 @@ function processCommand(receivedMessage) {
     }
     else if (primaryCommand == "faes")
     {
-        if (receivedMessage.member.roles.some(role => role.name === 'Master'))
+        if (receivedMessage.member.roles.some(role => role.name === 'Owner'))
         {
             receivedMessage.delete();
             try {
